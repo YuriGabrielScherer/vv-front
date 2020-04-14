@@ -9,7 +9,7 @@ import { PessoaService } from '../pessoa.service';
 import { ToastService } from './../../shared/services/toast/toast.service';
 import { ModalService } from './../../shared/modais/modal.service';
 
-import { switchMap, take } from 'rxjs/operators';
+import { switchMap, take, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cadastro',
@@ -38,7 +38,6 @@ export class CadastroComponent implements OnInit, OnDestroy {
   // Pessoa a ser cadastrada
   objetoPessoa: Pessoa = new Pessoa();
 
-
   constructor(
     private formBuilder: FormBuilder,
     private pessoaService: PessoaService,
@@ -58,9 +57,10 @@ export class CadastroComponent implements OnInit, OnDestroy {
       nome: [null,  // Valor inicial nulo
         Validators.required], // Validacoes dos campos
       cpf: [null, [Validators.required, this.validacaoForm.isValidCpf()]],
+      login: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       telefone: [null, [Validators.required, this.validacaoForm.isValidPhone()]],
-      dataNascimento: [null, [Validators.required]],
+      dataNascimento: [null, [Validators.required, this.validacaoForm.isValidDate()]],
       senha: [null, [Validators.required, Validators.minLength(5)]],
       sexo: ['m', Validators.required]
     });
@@ -71,31 +71,29 @@ export class CadastroComponent implements OnInit, OnDestroy {
       // Verificando se tem Pessoa para alterar
       if (dados['alteracao']) {
 
-        // Validando toda a tela de Alteracao
         this.telaAlteracao = true;
 
-        // Pegando os dados
         this.objetoPessoa = dados['alteracao'];
 
-        // Tratando o telefone
-        let telefone = this.objetoPessoa.telefonePessoa;
+        let telefone = this.objetoPessoa.telefone;
 
         // Colocando mascara para passar na validacao
         telefone = telefone.replace(/^(\d{2})(\d)/g, '($1)$2'); // Colocando parenteses
         telefone = telefone.replace(/(\d)(\d{4})$/, '$1-$2');  // Colocando hifen
 
         // Retornando dados alterados
-        this.objetoPessoa.telefonePessoa = telefone;
+        this.objetoPessoa.telefone = telefone;
 
         // Atribuindo valores para o formulario
         this.formulario.patchValue({
-          nome: this.objetoPessoa.nomePessoa,
-          cpf: this.objetoPessoa.cpfPessoa,
-          email: this.objetoPessoa.emailPessoa,
-          telefone: this.objetoPessoa.telefonePessoa,
-          dataNascimento: this.objetoPessoa.dataNascimentoPessoa,
-          senha: this.objetoPessoa.senhaPessoa,
-          sexo: this.objetoPessoa.sexoPessoa
+          nome: this.objetoPessoa.nome,
+          login: this.objetoPessoa.login,
+          cpf: this.objetoPessoa.cpf,
+          email: this.objetoPessoa.email,
+          telefone: this.objetoPessoa.telefone,
+          dataNascimento: this.objetoPessoa.dataNascimento,
+          senha: this.objetoPessoa.senha,
+          sexo: this.objetoPessoa.sexo
         });
 
         // Setando Formulario como valido - Aplicar CSS Valido
@@ -109,25 +107,19 @@ export class CadastroComponent implements OnInit, OnDestroy {
     this.inscricao.unsubscribe();
   }
 
-  // OnSubmit do Formulario
-  private onSubmit() {
+  onSubmit() {
 
-    // Verificando se o formulario é valido
     if (this.formulario.valid && this.formulario.dirty) {
-
-      // Spinner
       this.spinner = true;
-
-      // Service de POST
       this.pessoaService.save(this.criarObjetoPessoa(this.formulario))
+        .pipe(
+          finalize(() => {
+            this.spinner = false;
+          }))
         .subscribe((retorno) => {
-
-          // Mensagem Sucesso
           this.toastService.toastSuccess('Registrado com sucesso!', 'Usuário cadastrado com sucesso!');
-
-          // Resetando o Form
           this.formulario.reset();
-
+          console.log(retorno);
           // Navegando para a tela de Login
           if ((sessionStorage.getItem('usuario_logado') === null) &&
             (localStorage.getItem('usuario_logado') === null)) {
@@ -137,15 +129,12 @@ export class CadastroComponent implements OnInit, OnDestroy {
           }
         },
           (error) => {
-
-            // Mensagens de Erro
+            console.log(error);
             if (error['status'] === 400) {
               this.toastService.toastWarning('Erro ao registrar.', 'Erro ao cadastrar o usuário. Verifique os dados e tente novamente.');
             } else {
               this.toastService.toastErroBanco();
             }
-          }, () => { // Quando a requisicao acabar
-            this.spinner = false;
           });
     } else {
       // Resgatando os Componentes do Formulario
@@ -153,9 +142,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Excluindo Pessoa
   onDelete() {
-    // Confirmando exclusao com o usuario
     const resposta$ = this.modalService.showConfirmModal('Confirmar exclusão',
       'Deseja realmente excluir o usuário selecionado?', 'Excluir');
 
@@ -163,16 +150,16 @@ export class CadastroComponent implements OnInit, OnDestroy {
     resposta$.asObservable()
       .pipe(
         take(1),
-        switchMap(resposta => resposta ? this.pessoaService.remove(this.objetoPessoa.idPessoa) : EMPTY)
+        switchMap(resposta => resposta ? this.pessoaService.remove(this.objetoPessoa.id) : EMPTY),
+        finalize(() => {
+          this.spinner = false;
+        })
       ).subscribe( // Esse subscribe refere-se ao PessoaService.remove() que é retornado pelo resposta$ atraves do switchMap()
         () => {
-          // Mensagem
           this.toastService.toastInfo('Sucesso!', 'O registro foi excluído com sucesso.');
-          // Roteamento
           this.router.navigate(['pessoa/listar']);
         },
         (error) => {
-          // Tratamento de Erros
           switch (error['status']) {
             // Erro Banco
             case 400: {
@@ -187,35 +174,38 @@ export class CadastroComponent implements OnInit, OnDestroy {
             }
           }
           this.spinner = false;
-        }, () => { // Requisicao acabou
-          this.spinner = false;
-        }
-      );
+        });
   }
 
-  // Criando objeto Pessoa
   private criarObjetoPessoa(formGroup: FormGroup): Pessoa {
-
     // Atribuindo valores
-    this.objetoPessoa.nomePessoa = formGroup.get('nome').value;
-    this.objetoPessoa.emailPessoa = formGroup.get('email').value;
-    this.objetoPessoa.senhaPessoa = formGroup.get('senha').value;
-    this.objetoPessoa.sexoPessoa = formGroup.get('sexo').value;
+    this.objetoPessoa.nome = formGroup.get('nome').value;
+    this.objetoPessoa.email = formGroup.get('email').value;
+    this.objetoPessoa.senha = formGroup.get('senha').value;
+    this.objetoPessoa.sexo = formGroup.get('sexo').value;
+    this.objetoPessoa.login = formGroup.get('login').value;
+    this.objetoPessoa.dataNascimento = this.validarData(formGroup.get('dataNascimento').value);
 
     // Tratando o CPF - Retirando a mascara
     const cpf: string = formGroup.get('cpf').value.replace(/[^0-9]+/g, '');
-    this.objetoPessoa.cpfPessoa = cpf;
-
-    // Tratando Data de Nascimento
-    this.objetoPessoa.dataNascimentoPessoa = formGroup.get('dataNascimento').value;
+    this.objetoPessoa.cpf = cpf;
 
     // Tratando Telefone - Retirando mascara
     const telefone: string = formGroup.get('telefone').value.replace(/[^0-9]+/g, '');
-    this.objetoPessoa.telefonePessoa = telefone;
+    this.objetoPessoa.telefone = telefone;
 
     // Retornando objeto para POST
     return this.objetoPessoa;
   }
+
+  private validarData(data: string) {
+    const dia = this.formulario.get('dataNascimento').value.slice(0, 2);
+    const mes = this.formulario.get('dataNascimento').value.slice(3, 5);
+    const ano = this.formulario.get('dataNascimento').value.slice(6, 10);
+    const dataN = `${ano}-${mes}-${dia}`;
+    return dataN;
+  }
+
 
   // Realizando verificacao Campo por Campo
   private validaFormulario(grupo: FormGroup) {
@@ -229,14 +219,11 @@ export class CadastroComponent implements OnInit, OnDestroy {
   }
 
   resetForm() {
-
     // Validando Modo Alteracao
     if (this.telaAlteracao) {
       this.router.navigate(['/pessoa/listar']);
     } else {
-
       this.formulario.reset();
-
       Object.keys(this.formulario.controls).forEach(controle => {
         // Marcando como Touched para aplicar as validacoes
         this.formulario.get(controle).markAsUntouched();

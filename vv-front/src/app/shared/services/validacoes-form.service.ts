@@ -77,7 +77,6 @@ export class ValidacoesFormService {
 
   }
 
-  // Validacao de Telefone
   isValidPhone() {
 
     // Retornando o Telefone
@@ -89,6 +88,21 @@ export class ValidacoesFormService {
 
       if (regex.test(telefone) === false) {
         return { phoneNotValid: true };
+      }
+      return null;
+    };
+  }
+
+  isValidDate() {
+    return (control: AbstractControl): Validators => {
+      if (!control === undefined) {
+        const dia = control.value.slice(0, 2) as unknown as number;
+        const mes = control.value.slice(3, 5) as unknown as number;
+        const ano = control.value.slice(6, 10) as unknown as number;
+
+        if ((dia <= 0 || dia >= 32) || (mes <= 0 || mes >= 13)) {
+          return { dateNotValid: true };
+        }
       }
       return null;
     };
@@ -121,7 +135,7 @@ export class ValidacoesFormService {
   }
 
   // Retorna valor para aplicar na Class do Input
-  private aplicaCss(campo: AbstractControl) {
+  protected aplicaCss(campo: AbstractControl) {
     return {
       'is-invalid': this.verificaValidTouched(campo),
       'is-valid': !this.verificaValidTouched(campo) && (campo.touched),
@@ -129,7 +143,7 @@ export class ValidacoesFormService {
   }
 
   // Verificando se o campo está invalido e se foi Focado
-  private verificaValidTouched(campo: AbstractControl) {
+  protected verificaValidTouched(campo: AbstractControl) {
     if (!campo.enabled) {
       // console.log('if enabled');
       return false;

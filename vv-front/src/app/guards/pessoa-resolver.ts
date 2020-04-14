@@ -10,13 +10,9 @@ import { AuthService } from './../login/auth.service';
 )
 export class PessoaResolver implements Resolve<Pessoa> {
 
-
-
   constructor(
     private authService: AuthService
-  ) {
-
-  }
+  ) {  }
   resolve(route: ActivatedRouteSnapshot): Observable<Pessoa> | Promise<Pessoa> | Pessoa {
     return this.authService.getUserLogged();
   }

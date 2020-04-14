@@ -1,12 +1,13 @@
 export class Pessoa {
 
-  idPessoa: number;
-  nomePessoa: string;
-  senhaPessoa: string;
-  dataNascimentoPessoa: string;
-  cpfPessoa: string;
-  emailPessoa: string;
-  tipoUsuarioPessoa: number;
-  telefonePessoa: string;
-  sexoPessoa: string;
+  id: number;
+  nome: string;
+  senha: string;
+  dataNascimento: string;
+  cpf: string;
+  email: string;
+  tipoUsuario: number;
+  telefone: string;
+  sexo: string;
+  login: string;
 }

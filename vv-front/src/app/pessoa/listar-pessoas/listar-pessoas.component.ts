@@ -77,7 +77,7 @@ export class ListarPessoasComponent implements OnInit {
       // Retornando Lista filtrada
       return this.listaPessoa.filter(
         (pessoa) =>
-          pessoa.nomePessoa.toLocaleLowerCase().includes(nome)
+          pessoa.nome.toLocaleLowerCase().includes(nome)
       );
 
     } else if (this.formularioFiltro.get('tipoUsuario').value !== 0) {
@@ -87,7 +87,7 @@ export class ListarPessoasComponent implements OnInit {
       // Retornando Lista filtrada
       return this.listaPessoa.filter(
         (pessoa) =>
-          pessoa.tipoUsuarioPessoa === tipo
+          pessoa.tipoUsuario === tipo
       );
     } else {
       return this.listaPessoa;

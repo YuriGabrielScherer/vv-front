@@ -159,7 +159,7 @@ export class AtletaComponent implements OnInit {
     atleta.idGrau = this.formulario.get('grau').value;
     atleta.dataInicio = this.formulario.get('dataInicio').value;
 
-    atleta.idPessoa = this.pessoa.idPessoa;
+    atleta.idPessoa = this.pessoa.id;
 
     return atleta;
 

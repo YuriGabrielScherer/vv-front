@@ -31,22 +31,18 @@ export class AuthService {
     return this.http.post<Pessoa>('http://localhost:8080/login', login).pipe(
       take(1),
       map(
-        (userData: any) => {
-          console.log('UserData -> ', userData);
-          sessionStorage.setItem('email', login.username);
-
-          const tokenStr = 'Bearer ' + userData.token;
-
+        (token: any) => {
+          sessionStorage.setItem('login', login.username);
+          const tokenStr = 'Bearer ' + token.token;
           sessionStorage.setItem('token', tokenStr);
-
-          return userData;
+          return token;
         }
       )
     );
   }
 
   isUserLoggedIn(): boolean {
-    const user = sessionStorage.getItem('email');
+    const user = sessionStorage.getItem('login');
     return !(user === null);
   }
 
@@ -67,16 +63,14 @@ export class AuthService {
   }
 
   getUserLogged() {
-
-    let email: string;
-
-    if (sessionStorage.getItem('email')) {
-      email = sessionStorage.getItem('email');
+    let login: string;
+    if (sessionStorage.getItem('login')) {
+      login = sessionStorage.getItem('login');
     } else {
-      email = localStorage.getItem('email');
+      login = localStorage.getItem('login');
     }
 
-    return this.pessoaService.loadByEmail(email)
+    return this.pessoaService.loadByLogin(login)
       .pipe(
         take(1)
       );

@@ -7,7 +7,7 @@
           alt="Logo Karatê"
         />
       </div>
-      <form class="formulario" [formGroup]="formulario">
+      <form class="formulario" [formGroup]="formulario" (submit)="onSubmit()">
         <h4 class="entrar">Cadastro de Usuários</h4>
         <hr />
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col">
+          <div class="form-group col-md-6 col-sm-12">
             <input
               type="password"
               class="form-control"
@@ -44,6 +44,22 @@
             <app-campo-control-erro
               [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('senha'))"
               msgErro="Senha é obrigatória. Mínimo 5 caracteres.">
+            </app-campo-control-erro>
+          </div>
+
+          <div class="form-group col-md-6 col-sm-12">
+            <input
+              type="text"
+              class="form-control"
+              id="login"
+              placeholder="Login"
+              formControlName="login"
+              [ngClass]="validacaoForm.aplicaCss(formulario.get('login'))"/>
+
+            <!-- Div com mensagem de erro para o usuário -->
+            <app-campo-control-erro
+              [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('login'))"
+              msgErro="Login é obrigatório.">
             </app-campo-control-erro>
           </div>
         </div>
@@ -139,14 +155,12 @@
             class="btn btn-outline-success"
             id="btnCadastro"
             *ngIf="!telaAlteracao"
-            (click)="onSubmit()"
           >
             Cadastrar
           </button>
 
           <button
             type="submit"
-            (click)="onSubmit()"
             class="btn btn-outline-warning"
             id="btnAlterar"
             *ngIf="telaAlteracao"

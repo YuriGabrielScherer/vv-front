@@ -10,13 +10,12 @@
 
   <form class="formulario" [formGroup]="formulario" (submit)="realizarLogin()">
     <div class="form-group">
-      <label for="campoEmail">E-mail</label>
+      <label for="campoLogin">Login</label>
       <input
-        type="email"
+        type="text"
         class="form-control"
-        id="campoEmail"
-        aria-describedby="emailHelp"
-        formControlName="email"
+        id="campoLogin"
+        formControlName="login"
       />
     </div>
     <div class="form-group">

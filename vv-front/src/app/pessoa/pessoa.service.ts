@@ -18,7 +18,7 @@ export class PessoaService extends CrudService<Pessoa> {
   ) {
 
     // Construtor do CrudService
-    super(http, `${environment.API}pessoa`);
+    super(http, `${environment.API}pessoa/cadastrar`);
   }
 
   //  Retornar o Pessoa usando o e-mail
@@ -42,6 +42,13 @@ export class PessoaService extends CrudService<Pessoa> {
       .pipe(
         take(1)
       );
+  }
+
+  loadByLogin(login: string) {
+    return this.http.get<Pessoa>(`${environment.API}pessoa/login/${login}`)
+    .pipe(
+      take(1)
+    );
   }
 
 }

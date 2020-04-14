@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.formulario = this.formBuilder.group({
-      email: [null, Validators.required],
+      login: [null, Validators.required],
       senha: [null, Validators.required],
       lembrar: [false]
     });
@@ -56,11 +56,8 @@ export class LoginComponent implements OnInit {
   realizarLogin() {
 
     if (this.formulario.valid) {
-
       this.spinnerCarregar = true;
-
       this.criarObjeto();
-
       this.authService.authenticate1(this.login).pipe(
         finalize(
           () => {
@@ -70,7 +67,6 @@ export class LoginComponent implements OnInit {
       )
         .subscribe(
           (success) => {
-            console.log('Subscribe -> ', success);
             this.formulario.reset();
             this.toastService.toastSuccess('Login realizado com sucesso.', 'Bem-vindo ao sistema!');
 
@@ -78,14 +74,15 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/administrativo']);
           },
           (error: any) => {
+            console.log(error);
             // Verificando falha com o banco ou Login
             if (error.status === 401) {
               this.toastService.toastWarning('Erro ao realizar o login.',
                 'Por favor, confira se o usuário e senha estão corretos e tente novamente.');
 
-              // Selecionando o Campo de nome.
-              const campoNome = document.getElementById('campoEmail') as HTMLInputElement;
-              campoNome.focus();
+              // Selecionando o Campo de Login.
+              const campoLogin = document.getElementById('campoLogin') as HTMLInputElement;
+              campoLogin.focus();
             } else {
               this.toastService.toastErroBanco();
             }
@@ -97,7 +94,7 @@ export class LoginComponent implements OnInit {
   // Metodo para popular o Objeto de login
   criarObjeto() {
     // Atribuindo valores ao objeto logins
-    this.login.username = this.formulario.get('email').value.toString();
+    this.login.username = this.formulario.get('login').value.toString();
     this.login.password = this.formulario.get('senha').value.toString();
 
     this.lembrarDeMim = this.formulario.get('lembrar').value;
