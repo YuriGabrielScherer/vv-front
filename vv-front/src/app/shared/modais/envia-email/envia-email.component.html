@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Enviar e-mail</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="formulario">
+
+    <div class="form-group">
+        <label for="email">Para</label>
+        <!-- <input type="text" class="form-control" id="email" placeholder="Pesquise pelo nome do usuário cadastrado."
+        formControlName="email"> -->
+        <select
+          multiple
+          class="form-control custom-select"
+          id="email"
+          formControlName="email"
+          [ngClass]="validaForm.aplicaCss(formulario.get('email'))">
+            <option *ngFor="let email of destinatarios" [value]="email.email">{{ email.nome }}</option>
+        </select>
+
+        <!-- Div com mensagem de erro para o usuário -->
+        <app-campo-control-erro
+          [mostraErro]="validaForm.verificaValidTouched(formulario.get('email'))"
+          msgErro="Escolha ao menos um destinatário para o e-mail.">
+        </app-campo-control-erro>
+
+        <small class="form-text text-muted">
+          Use CTRL, ALT ou clique e arraste para selecionar mais de um destinatário.
+        </small>
+    </div>
+
+    <div class="form-group">
+      <label for="assunto">Assunto</label>
+      <input type="text" class="form-control" id="assunto"
+      formControlName="assunto"
+      [ngClass]="validaForm.aplicaCss(formulario.get('assunto'))">
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validaForm.verificaValidTouched(formulario.get('assunto'))"
+        msgErro="Informe o assunto do e-mail.">
+    </app-campo-control-erro>
+    </div>
+
+    <div class="form-group">
+      <label for="mensagem">Mensagem</label>
+      <textarea class="form-control" id="mensagem" rows="3" maxlength="250"
+      formControlName="mensagem"
+      [ngClass]="validaForm.aplicaCss(formulario.get('mensagem'))">
+    </textarea>
+
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validaForm.verificaValidTouched(formulario.get('mensagem'))"
+        msgErro="Digite a mensagem para o corpo do e-mail.">
+      </app-campo-control-erro>
+
+      <small class="form-text text-muted">
+        Sua mensagem deve ter, no máximo, 250 caracteres.<span class="contador">{{ contarCaracteres() }}</span>
+      </small>
+    </div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+
+  <div *ngIf="spinner">
+    <div class="spinner-border text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-outline-success" (click)="onSubmit()">Enviar</button>
+  <button type="button" class="btn btn-outline-danger" (click)="onClose()">Cancelar</button>
+</div>

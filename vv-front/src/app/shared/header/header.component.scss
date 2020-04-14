@@ -1,0 +1,35 @@
+.header{
+  // margin-bottom: 5px;
+}
+
+// Index Router
+.navbar-brand{
+
+  color: white;
+  font-weight: bold;
+}
+.navbar-brand:hover{
+  text-decoration: underline;
+  color: white;
+}
+
+// Changing A Nav Links Colors
+.nav-item a{
+  color: white;
+}
+
+.nav-item a:hover{
+  color: white;
+  font-weight: bold;
+}
+
+// Router Actived
+.active{
+  color: rgb(255, 255, 255)!important;
+  text-shadow: 1px 1px black;
+  font-weight: bold;
+}
+
+.deslogar{
+  cursor: pointer;
+}

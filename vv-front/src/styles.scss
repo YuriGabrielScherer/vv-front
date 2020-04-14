@@ -1,0 +1,12 @@
+/* O ~ referencia o node_modules */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~ngx-toastr/toastr';
+
+html,
+body {
+  height: 100%;
+}
+
+.a{
+  border: 1px dotted black!important;
+}

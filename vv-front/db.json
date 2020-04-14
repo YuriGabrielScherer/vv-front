@@ -1,0 +1,44 @@
+{
+  "pessoa": [
+    {
+      "nome": "Yuri Gabriel Scherer da Silva Vaz",
+      "cpf": "083.500.759-61",
+      "email": "yurisvaz@hotmail.com",
+      "senha": "12345",
+      "telefone": "(47)99253-4256",
+      "dataNascimento": "5/8/2001",
+      "id": 1,
+      "tipoUsuario": 1
+    },
+    {
+      "nome": "Jair da Silva Vaz",
+      "cpf": "788.288.569-04",
+      "email": "jair@ociani.com",
+      "senha": "98765",
+      "telefone": "(47)99117-1515",
+      "dataNascimento": "4/1/1988",
+      "id": 2,
+      "tipoUsuario": 2
+    },
+    {
+      "nome": "Caroline Scherer da Silva Vaz",
+      "cpf": "083.500.759-61",
+      "email": "caroline@hotmail.com",
+      "senha": "96587",
+      "telefone": "(47)99285-5684",
+      "dataNascimento": "25/4/1999",
+      "id": 3,
+      "tipoUsuario": 3
+    },
+    {
+      "nome": "Ivone Schlindwein Scherer",
+      "cpf": "788.635.119-34",
+      "email": "ivone@gmail.com",
+      "senha": "74589",
+      "telefone": "(47)99117-1515",
+      "dataNascimento": "11/11/1975",
+      "id": 4,
+      "tipoUsuario": 3
+    }
+  ]
+}

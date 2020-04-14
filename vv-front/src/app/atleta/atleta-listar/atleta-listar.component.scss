@@ -1,0 +1,40 @@
+.divAtletaListar {
+  // padding-top: 1em;
+  padding-right: 1em;
+}
+.gambiarra {
+  color: white;
+  text-decoration: none;
+  cursor: default;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Centralizando o Spinner
+.divSpinner {
+  margin: auto;
+  margin-top: 5px;
+}
+
+// Div com os Filtros
+.divFiltros {
+  padding: 0.5em;
+}
+
+.divSwitch {
+  // Alinhando o Switch no meio
+  display: flex;
+  align-items: center;
+}
+
+// Tabela de Dados
+.divListagem {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+

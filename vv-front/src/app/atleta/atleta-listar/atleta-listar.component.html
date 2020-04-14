@@ -1,0 +1,101 @@
+
+<div class="divAtletaListar">
+  <h5 class="gambiarra">a</h5>
+
+  <h4>Atletas Cadastrados -> <strong> Falta Fazer o Filtro Funcionar!</strong></h4>
+  <hr />
+
+  <!-- Spinner Loading -->
+  <ng-template #loading>
+    <div class="row">
+      <div class="divSpinner">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div
+    class="divListagemDados"
+    *ngIf="retornarAtletas() as atletas; else loading">
+    <!-- Filtros da Listagem -->
+    <div class="divFiltros">
+      <div class="row">
+        <!-- Div Filtragem por nome -->
+        <div class="col-sm-12 col-md">
+          <label for="nome">Pesquise por nome</label>
+          <div class="form-group">
+            <input
+              class="form-control mr-sm-2 filtroNome"
+              type="search"
+              placeholder="Nome"
+              id="nome"/>
+          </div>
+        </div>
+
+        <!-- Div Switch Apenas Adultos -->
+        <div class="col-sm-12 col-md divSwitch">
+          <div class="custom-control custom-switch ">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="apenasAdultos"/>
+
+            <label class="custom-control-label" for="apenasAdultos">
+              Apenas adultos
+            </label>
+          </div>
+        </div>
+
+        <!-- Div Select campeonatos -->
+        <div class="col-sm-12 col-md">
+          <div class="form-group">
+            <label>Aptos para os campeonatos</label>
+            <div id="campeonatos" class="row">
+              <div class="col-sm-5" *ngFor="let item of campeonatos">
+                <label class="checkbox-inline">
+                  <input type="checkbox" />
+                  {{ item }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divListagem">
+      <!-- Tabela -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Nascimento</th>
+            <th scope="col">Grau</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let atleta of retornarAtletas()">
+            <td>{{ atleta.nomePessoa }}</td>
+            <td>{{ atleta.cpfPessoa | mascaraCpf }}</td>
+            <td>{{ atleta.dataNascimento }}</td>
+            <td>{{ atleta.idGrau | corFaixa }}</td>
+            <td>
+              <button
+                class="btn btn-outline-success"
+                (click)="openModal(atleta.idAtleta)">
+                Detalhes
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+

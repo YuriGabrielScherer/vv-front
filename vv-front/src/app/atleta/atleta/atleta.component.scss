@@ -1,0 +1,75 @@
+.divAtleta {
+  // padding-top: 1em;
+  padding-right: 1em;
+}
+.gambiarra {
+  color: white;
+  text-decoration: none;
+  cursor: default;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Div Formulario
+// Hover nos campos Input
+input:hover {
+  border-color: #28a745;
+  transition-delay: 0.1s;
+}
+
+// Mudando a classe do Bootstrap
+.form-control:focus {
+  border-color: rgba(30, 255, 0, 0.63) !important;
+  box-shadow: 0 0 0 0.2rem rgba(51, 160, 37, 0.507) !important;
+}
+
+// Validacoes dos campos
+.ng-invalid.ng-touched:not(form) {
+  border: 1px solid red;
+}
+
+.invalid-feedback {
+  display: inline !important;
+}
+
+@media (max-width: 800px) {
+  .divFormulario {
+    padding: 1em;
+  }
+}
+
+.grupoForm {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0.3em;
+  overflow: hidden;
+}
+.divEsquerda {
+  float: left;
+}
+.divDireita {
+  float: right;
+}
+
+// Parte dados do Atleta.
+.divNome {
+  text-align: center;
+}
+
+.divLateralDireita {
+  border-left: 1px solid rgba(75, 75, 75, 0.445);
+  padding-left: 1em;
+}
+.imagem {
+  max-width: 150px;
+}
+
+.divDadosPessoais h5 {
+  text-align: center;
+  margin-bottom: 1.5em;
+}

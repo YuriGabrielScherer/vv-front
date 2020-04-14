@@ -1,0 +1,123 @@
+<div class="row divTela">
+  <!-- Lateral esquerda com filtros -->
+  <div class="divEsquerda col-md-3 col-sm-12  ">
+    <div class="divIcone ">
+      <img
+        src="../../../assets/Imagens/logos/logoKarate.png"
+        alt="Logo Karatê."
+      />
+    </div>
+    <h4>Filtrar Dados</h4>
+    <hr />
+    <div class="divFiltro">
+      <label for="nome">Pesquise por nome</label>
+      <form [formGroup]="formularioFiltro">
+        <div class="form-group">
+          <input
+            class="form-control mr-sm-2 filtroNome"
+            type="search"
+            placeholder="Nome"
+            id="nome"
+            formControlName="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label for="tipoUsuario">Tipo de Usuário</label>
+          <select
+            class="form-control custom-select"
+            id="tipoUsuario"
+            formControlName="tipoUsuario"
+          >
+            <!-- <option></option> -->
+            <option *ngFor="let tipo of tipoUsuario" [value]="tipo.id">{{
+              tipo.tipo
+            }}</option>
+          </select>
+        </div>
+        <!-- <div class="form-group">
+          <div class="custom-control custom-switch">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="apenasAdultos"
+              formControlName="adulto"
+            />
+            <label class="custom-control-label" for="apenasAdultos">
+              Apenas adultos
+            </label>
+          </div>
+        </div>-->
+
+        <!-- <div class="form-group">
+          <label>Aptos para os campeonatos</label>
+          <div id="campeonatos" class="row">
+            <div
+              class="col-sm-5"
+              formArrayName="campeonatos"
+              *ngFor="
+                let item of formularioFiltro.get('campeonatos').controls;
+                let i = index
+              "
+            >
+              <label class="checkbox-inline">
+                <input type="checkbox" [formControlName]="i" />
+                {{ campeonatos[i] }}
+              </label>
+            </div>
+          </div>
+        </div> -->
+      </form>
+    </div>
+  </div>
+
+  <!-- Lateral direita com tabela -->
+  <div class="divTable col-md-9 col-sm-12  ">
+    <div class="divTopoTabela">
+      <h3>Usuários Cadastrados</h3>
+      <button
+        class="btn btn-outline-info my-2 my-sm-0 "
+        [routerLink]="['/pessoa/cadastro']"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Clique aqui para cadastrar um novo usuário."
+      >
+        Novo usuário
+      </button>
+
+
+
+
+    </div>
+    <div class="divTabela table-responsive ">
+      <!-- Tabela com os dados -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Data Nascimento</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pessoa of obterUsuarios()">
+            <td scope="row">{{ pessoa.nomePessoa }}</td>
+            <td scope="row">{{ pessoa.cpfPessoa | mascaraCpf }}</td>
+            <td>{{ pessoa.emailPessoa }}</td>
+            <td>{{ pessoa.dataNascimentoPessoa }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-outline-info"
+                [routerLink]="['/cadastro', pessoa.idPessoa]"
+              >
+                Alterar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<div
+  class="telaAdministrativa"
+  *ngIf="usuarioAutenticado !== null; else loading">
+  <div class="row divRow ">
+    <div class="divMenus  col-md-3 col-sm-12">
+      <h4>Bem-Vindo, {{ usuarioAutenticado.nomePessoa | primeiroNome }}</h4>
+      <h5>Administrativo Karatê</h5>
+      <hr />
+
+      <div class="list-group">
+        <!-- Link Inicio -->
+        <div
+          class="list-group-item linkInicio"
+          [routerLink]="['/administrativo']"
+        >
+          Início
+        </div>
+
+        <!-- Sub Menu Usuario -->
+        <div
+          class="list-group-item subMenu"
+          (click)="isCollapsedUsuarios = !isCollapsedUsuarios"
+          [attr.aria-expanded]="!isCollapsedUsuarios"
+          aria-controls="collapseUsuarios"
+        >
+          Usuários
+        </div>
+        <div
+          id="collapseUsuarios"
+          [collapse]="!isCollapsedUsuarios"
+          [isAnimated]="true"
+        >
+          <a
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/pessoa/cadastro']"
+          >
+            Cadastrar
+          </a>
+          <a
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/pessoa/listar']"
+            >Listar</a
+          >
+        </div>
+
+        <!-- Sub Menu Atleta -->
+        <div
+          class="list-group-item subMenu"
+          (click)="isCollapsedAtletas = !isCollapsedAtletas"
+          [attr.aria-expanded]="!isCollapsedAtletas"
+          aria-controls="collapseAtletas"
+        >
+          Atletas
+        </div>
+        <div
+          id="collapseAtletas"
+          [collapse]="!isCollapsedAtletas"
+          [isAnimated]="true"
+        >
+          <a
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/administrativo/atleta']"
+          >
+            Cadastrar
+          </a>
+          <a
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/administrativo/atleta/listar']"
+          >
+            Listar
+          </a>
+          <a class="list-group-item list-group-item-action"
+          [routerLink]="['/administrativo/atleta/funcoes']">
+            Gerenciar
+          </a>
+        </div>
+
+        <!-- Sub Menu Campeonato-->
+        <div
+          class="list-group-item subMenu"
+          (click)="isCollapsedCampeonatos = !isCollapsedCampeonatos"
+          [attr.aria-expanded]="!isCollapsedCampeonatos"
+          aria-controls="collapseCampeonatos"
+        >
+          Campeonatos
+        </div>
+        <div
+          id="collapseCampeonatos"
+          [collapse]="!isCollapsedCampeonatos"
+          [isAnimated]="true"
+        >
+          <a class="list-group-item list-group-item-action">
+            Histórico
+          </a>
+          <a class="list-group-item list-group-item-action">
+            Oficiais
+          </a>
+          <a class="list-group-item list-group-item-action">
+            Internos
+          </a>
+        </div>
+
+        <!-- Sub Menu Exame-->
+        <div
+          class="list-group-item subMenu"
+          (click)="isCollapsedExames = !isCollapsedExames"
+          [attr.aria-expanded]="!isCollapsedExames"
+          aria-controls="collapseExames"
+        >
+          Exames
+        </div>
+        <div
+          id="collapseExames"
+          [collapse]="!isCollapsedExames"
+          [isAnimated]="true"
+        >
+          <a class="list-group-item list-group-item-action">
+            Histórico
+          </a>
+          <a class="list-group-item list-group-item-action">
+            Agendar
+          </a>
+          <a class="list-group-item list-group-item-action">
+            Requisitos
+          </a>
+        </div>
+
+        <!-- Sub Menu Placar-->
+        <a class="list-group-item subMenu">Placar eletrônico </a>
+      </div>
+    </div>
+    <div class="col-md-9 col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="row rowSpinner">
+    <div class="divSpinner">
+      <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

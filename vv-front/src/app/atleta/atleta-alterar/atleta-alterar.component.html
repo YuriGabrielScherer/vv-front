@@ -1,0 +1,153 @@
+<div class="modal-content"  *ngIf="atleta; else loading">
+  <div class="modal-header" >
+  <h4 class="modal-title pull-left">Alterar Atleta - {{ atleta.nomePessoa | primeiroNome }}</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="onClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div>
+      <ul>
+        <li>Nome: <strong>{{ atleta.nomePessoa }}</strong></li>
+        <li>CPF: <strong>{{ atleta.cpfPessoa | mascaraCpf }}</strong></li>
+        <li>Data Nascimento: <strong>{{ atleta.dataNascimento }}</strong></li>
+      </ul>
+
+      <hr>
+
+      <tabset>
+        <!-- Formulario para alteracao da PessoaCompetitiva -->
+        <tab heading="Atleta">
+          <form [formGroup]="formulario">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="federacao">Federação</label>
+                <input type="text" class="form-control" id="federacao"
+                  formControlName="federacao"
+                  [ngClass]="validaForm.aplicaCss(formulario.get('federacao'))" />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="confederacao">Confederação</label>
+                <input type="text" class="form-control" id="confederacao"
+                  formControlName="confederacao"
+                  [ngClass]="validaForm.aplicaCss(formulario.get('confederacao'))"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="dataInicio">Data Início</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dataInicio"
+                  formControlName="dataInicio"
+                  [textMask]="{ mask: maskData}"
+                  [ngClass]="validaForm.aplicaCss(formulario.get('dataInicio'))"/>
+                  <!-- Div Mensagem de Erro -->
+                  <app-campo-control-erro
+                    [mostraErro]="validaForm.verificaValidTouched(formulario.get('dataInicio'))"
+                    msgErro="Data de início da prática do atleta é obrigatória.">
+                  </app-campo-control-erro>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="idGrau">Grau</label>
+                <select id="idGrau" class="custom-select" formControlName="idGrau" [ngClass]="validaForm.aplicaCss(formulario.get('idGrau'))">
+                  <option value="1" selected>Branca</option>
+                  <option value="2">Amarela</option>
+                  <option value="3">Vermelha</option>
+                  <option value="4">Laranja</option>
+                  <option value="5">Verde</option>
+                  <option value="6">Roxa</option>
+                  <option value="7">Marrom</option>
+                  <option value="8">Preta</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </tab>
+
+        <!-- Formulario para alteracao do Atleta - Responsaveis -->
+        <tab heading="Responsáveis">
+          <form [formGroup]="formulario">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="nomeResponsavel">Nome da Mãe</label>
+                <input type="text" class="form-control" id="nomeResponsavel"
+                formControlName="nomeResponsavel"
+                [ngClass]="validaForm.aplicaCss(formulario.get('nomeResponsavel'))"/>
+                <!-- Div Mensagem de Erro -->
+                <app-campo-control-erro
+                  [mostraErro]="validaForm.verificaValidTouched(formulario.get('nomeResponsavel'))"
+                  msgErro="Nome da mãe do atleta é obrigatório.">
+                </app-campo-control-erro>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="telefoneResponsavel">Telefone do Responsável</label>
+                <input
+                  type="text" class="form-control" id="telefoneResponsavel"
+                  formControlName="telefoneResponsavel"
+                  [textMask]="{ mask: maskTelefone}"
+                  [ngClass]="validaForm.aplicaCss(formulario.get('telefoneResponsavel'))"/>
+                  <!-- Div Mensagem de Erro -->
+                  <app-campo-control-erro
+                    [mostraErro]="validaForm.verificaValidTouched(formulario.get('telefoneResponsavel'))"
+                    msgErro="Telefone do responsável do atleta é obrigatório.">
+                  </app-campo-control-erro>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="cpfResponsavel">CPF da Mãe</label>
+                <input type="text" class="form-control" id="cpfResponsavel"
+                formControlName="cpfResponsavel"
+                [textMask]="{ mask: maskCpf}"
+                [ngClass]="validaForm.aplicaCssCpf(formulario.get('cpfResponsavel'))"/>
+                <!-- Div Mensagem de Erro -->
+                <app-campo-control-erro
+                   [mostraErro]="validaForm.verificaValidTouched(formulario.get('cpfResponsavel'))"
+                   msgErro="CPF da mãe do atleta é obrigatório.">
+                </app-campo-control-erro>
+              </div>
+            </div>
+          </form>
+        </tab>
+
+        <!-- Tab para alteracao do Usuario -->
+        <tab heading="Infor. Pessoais" id="tabPessoa">
+          <div class="infoPessoal">
+            <span
+              >Para alterar informações pessoais do Atleta, clique
+              <a routerLink="/pessoa/cadastro/2" (click)="onClose()">aqui</a>
+            </span>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-warning" (click)="onSubmit()" [disabled]="!formulario.dirty" >Alterar</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="onDelete()">Excluir</button>
+    <button type="button" class="btn btn-outline-danger" (click)="onClose()">
+      Cancelar
+    </button>
+  </div>
+</div>
+
+<!-- Spinner Loading -->
+<ng-template #loading class="modal-content">
+
+  <div class="row">
+    <div class="divSpinner">
+      <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

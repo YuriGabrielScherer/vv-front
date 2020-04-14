@@ -1,0 +1,47 @@
+// Tela
+.divTela {
+  margin: 0 !important;
+  border-top: 1px solid black;
+}
+
+// Area do Filtro
+.divEsquerda {
+  background-color: rgba(209, 248, 209, 0.849);
+  padding: 15px;
+}
+.divIcone {
+  margin: 0 auto;
+  text-align: center;
+}
+.divIcone img {
+  max-width: 10em;
+  margin: 0 auto;
+}
+.divEsquerda h4 {
+  margin-top: 10px;
+}
+
+// Campos de Filtros
+.filtroNome {
+  width: 100%;
+}
+
+// Area da Tabela
+
+// Filtro
+.divTopoTabela {
+  overflow: hidden;
+  padding: 20px;
+}
+.divTopoTabela h3 {
+  float: left;
+}
+.divTopoTabela button {
+  float: right;
+  margin-right: 5px;
+}
+
+// Spinner
+.spinner-border {
+  margin: 0 auto;
+}

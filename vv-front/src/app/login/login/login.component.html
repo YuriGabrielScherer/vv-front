@@ -1,0 +1,57 @@
+<div class="telaLogin">
+
+  <div class="logo">
+    <img
+      src="../../../assets/Imagens/logos/logoKarate.jpg"
+      class="img-fluid image"
+      alt="Logo Karatê Vasto Verde"
+    />
+  </div>
+
+  <form class="formulario" [formGroup]="formulario" (submit)="realizarLogin()">
+    <div class="form-group">
+      <label for="campoEmail">E-mail</label>
+      <input
+        type="email"
+        class="form-control"
+        id="campoEmail"
+        aria-describedby="emailHelp"
+        formControlName="email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="campoSenha">Senha</label>
+      <a class="esqueceuSenha">Esqueceu a senha?</a>
+      <input
+        type="password"
+        class="form-control"
+        id="campoSenha"
+        formControlName="senha"
+      />
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="lembrarMim" formControlName="lembrar" />
+      <label class="form-check-label" for="lembrarMim">Lembrar de mim</label>
+    </div>
+
+    <!-- Div Botao Logar e Spinner -->
+    <div class="row rowBtn">
+      <button
+        type="submit"
+        id="btnEntrar"
+        class="btn btn-outline-success my-2 my-sm-0"
+      >
+        Entrar
+      </button>
+      <!-- Spinner carregamento -->
+      <div
+        class="spinner-border text-success"
+        role="status"
+        *ngIf="spinnerCarregar"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </form>
+</div>

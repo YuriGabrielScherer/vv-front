@@ -1,0 +1,86 @@
+<div class="painelAdmin">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <!-- Card c/ informacoes pessoais -->
+      <div class="card">
+        <div class="card-header">
+          <strong>{{ usuarioAutenticado.nomePessoa }}</strong>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Mantenha seus dados sempre atualizados!</h5>
+          <p class="card-text">
+            Com um simples toque, mantenha seus dados sempre atualizados para
+            garantir que todos terão contato com você!
+          </p>
+          <a
+            class="btn btn-outline-success"
+            [routerLink]="['/cadastro', usuarioAutenticado.idPessoa]">
+            Atualizar meus dados
+          </a>
+        </div>
+      </div>
+
+
+
+      <!-- Card c/ informacoes do Banco -->
+      <div class="card-deck">
+        <div class="card">
+          <img src="../../../assets/Imagens/administrativo/karate-card-01.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Atletas Cadastrados</h5>
+            <div class="card-text">
+
+              <ul>
+                <li>Total: 50</li>
+                <li>Homens: 31</li>
+                <li>Mulheres: 20</li>
+              </ul>
+            </div>
+            <a class="card-text" [routerLink]="['/administrativo/atleta/listar']">
+              <small class="text-muted">
+                Gerenciar
+              </small>
+            </a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../../../assets/Imagens/administrativo/karate-card-02.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Próximos Campeonatos</h5>
+            <div class="card-text">
+              <ul>
+                <li>OLESC 25/11</li>
+                <li>JOGUINHOS 20/09</li>
+                <li>BRASILEIRO 05/25</li>
+              </ul>
+            </div>
+            <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.idPessoa]">
+              <small class="text-muted">
+                Gerenciar
+              </small>
+            </a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../../../assets/Imagens/administrativo/karate-card-03.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Eventos</h5>
+            <div class="card-text">
+              <ul>
+                <li>Feijoada 05/07</li>
+                <li>Exame de Kyu 05/09</li>
+                <li>Exame de DAN 25/12</li>
+              </ul>
+            </div>
+            <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.idPessoa]">
+              <small class="text-muted">
+                Gerenciar
+              </small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
