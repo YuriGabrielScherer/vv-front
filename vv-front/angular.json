@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "vasto-verde"
+  "defaultProject": "vasto-verde",
+  "cli": {
+    "analytics": false
+  }
 }
