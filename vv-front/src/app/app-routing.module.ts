@@ -22,8 +22,8 @@ const routes: Routes = [
   {
     path: 'administrativo',
     loadChildren: () => import('./administrativo/administrativo.module').then(m => m.AdministrativoModule),
-    canActivate: [AuthGuard],
-    resolve: { pessoa: PessoaResolver }
+    //canActivate: [AuthGuard],
+    //resolve: { pessoa: PessoaResolver }
   },
   {
     path: 'pessoa',

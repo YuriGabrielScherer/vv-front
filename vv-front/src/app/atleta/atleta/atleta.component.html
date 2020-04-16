@@ -4,83 +4,52 @@
   <hr />
 
   <div class="divFormulario">
-    <form [formGroup]="formulario" >
+    <form [formGroup]="formulario">
       <div class="form-row  ">
         <!-- Parte Formulario -->
         <div class="form-group col-md-6 col-sm-12 ">
           <div class="form-group col-md-12 col-sm-12">
             <label for="cpfAtleta">Digite o CPF do novo atleta</label>
-            <input
-              type="text"
-              [textMask]="{ mask: maskCpf }"
-              class="form-control"
-              formControlName="cpfAtleta"
-              id="cpfAtleta"
-              (blur)="buscarDadosAtleta()"
-              [ngClass]="validacoesForm.aplicaCssCpf(formulario.get('cpfAtleta'))"
-            />
+            <input type="text" [textMask]="{ mask: maskCpf }" class="form-control" formControlName="cpfAtleta"
+              id="cpfAtleta" (blur)="buscarDadosAtleta()"
+              [ngClass]="validacoesForm.aplicaCssCpf(formulario.get('cpfAtleta'))" />
             <!-- Div Mensagem de Erro -->
-            <app-campo-control-erro
-              [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('cpfAtleta'))"
-              msgErro="CPF do atleta é obrigatório."
-            >
+            <app-campo-control-erro [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('cpfAtleta'))"
+              msgErro="CPF do atleta é obrigatório.">
             </app-campo-control-erro>
           </div>
 
           <div *ngIf="pessoa !== null">
             <div class="form-group col-md-12 col-sm-12">
               <label for="nomeResp">Nome da Mãe</label>
-              <input
-                type="text"
-                class="form-control"
-                id="nomeResp"
-                formControlName="nomeResp"
-                [ngClass]="validacoesForm.aplicaCss(formulario.get('nomeResp'))"
-              />
+              <input type="text" class="form-control" id="nomeResp" formControlName="nomeResp"
+                [ngClass]="validacoesForm.aplicaCss(formulario.get('nomeResp'))" />
 
               <!-- Div Mensagem de Erro -->
-              <app-campo-control-erro
-                [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('nomeResp'))"
-                msgErro="Nome do responsável é obrigatório."
-              >
+              <app-campo-control-erro [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('nomeResp'))"
+                msgErro="Nome do responsável é obrigatório.">
               </app-campo-control-erro>
             </div>
 
             <div class="form-group col-md-12 col-sm-12 grupoForm">
               <div class="col-md-6 divEsquerda ">
                 <label for="cpfResp">CPF da Mãe</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cpfResp"
-                  [textMask]="{ mask: maskCpf }"
-                  formControlName="cpfResp"
-                  [ngClass]="validacoesForm.aplicaCssCpf(formulario.get('cpfResp'))"
-                />
+                <input type="text" class="form-control" id="cpfResp" [textMask]="{ mask: maskCpf }"
+                  formControlName="cpfResp" [ngClass]="validacoesForm.aplicaCssCpf(formulario.get('cpfResp'))" />
 
                 <!-- Div Mensagem de Erro -->
-                <app-campo-control-erro
-                  [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('cpfResp'))"
-                  msgErro="CPF do responsável é obrigatório."
-                >
+                <app-campo-control-erro [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('cpfResp'))"
+                  msgErro="CPF do responsável é obrigatório.">
                 </app-campo-control-erro>
               </div>
 
               <div class="col-md-6 divDireita ">
                 <label for="telefone">Celular do Responsável</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="telefone"
-                  formControlName="telResp"
-                  [textMask]="{ mask: maskTel }"
-                  [ngClass]="validacoesForm.aplicaCss(formulario.get('telResp'))"
-                />
+                <input type="text" class="form-control" id="telefone" formControlName="telResp"
+                  [textMask]="{ mask: maskTel }" [ngClass]="validacoesForm.aplicaCss(formulario.get('telResp'))" />
                 <!-- Div com mensagem de erro para o usuário -->
-                <app-campo-control-erro
-                  [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('telResp'))"
-                  msgErro="Número de celular é obrigatório."
-                >
+                <app-campo-control-erro [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('telResp'))"
+                  msgErro="Número de celular é obrigatório.">
                 </app-campo-control-erro>
               </div>
             </div>
@@ -88,30 +57,18 @@
             <div class="form-group col-md-12 col-sm-12 grupoForm">
               <div class="col-md-6 divEsquerda ">
                 <label for="dataInicio">Data de início da prática</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="dataInicio"
-                  [textMask]="{ mask: maskData }"
-                  formControlName="dataInicio"
-                  [ngClass]="validacoesForm.aplicaCss(formulario.get('dataInicio'))"
-                />
+                <input type="text" class="form-control" id="dataInicio" [textMask]="{ mask: maskData }"
+                  formControlName="dataInicio" [ngClass]="validacoesForm.aplicaCss(formulario.get('dataInicio'))" />
                 <!-- Div Mensagem de Erro -->
-                <app-campo-control-erro
-                  [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('dataInicio'))"
-                  msgErro="Data de início da prática inválida."
-                >
+                <app-campo-control-erro [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('dataInicio'))"
+                  msgErro="Data de início da prática inválida.">
                 </app-campo-control-erro>
               </div>
 
               <div class="col-md-6 divDireita ">
                 <label for="grauAtleta">Grau do atleta</label>
-                <select
-                  class="custom-select"
-                  id="grauAtleta"
-                  formControlName="grau"
-                  [ngClass]="validacoesForm.aplicaCss(formulario.get('grau'))"
-                >
+                <select class="custom-select" id="grauAtleta" formControlName="grau"
+                  [ngClass]="validacoesForm.aplicaCss(formulario.get('grau'))">
 
                   <option value="1" selected>Branca</option>
                   <option value="2">Amarela</option>
@@ -124,10 +81,8 @@
                 </select>
 
                 <!-- Div Mensagem de Erro -->
-                <app-campo-control-erro
-                  [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('grau'))"
-                  msgErro="Selecione o grau do Atleta."
-                >
+                <app-campo-control-erro [mostraErro]="validacoesForm.verificaValidTouched(formulario.get('grau'))"
+                  msgErro="Selecione o grau do Atleta.">
                 </app-campo-control-erro>
               </div>
             </div>
@@ -135,33 +90,19 @@
             <div class="form-group col-md-12 col-sm-12 grupoForm">
               <div class="col-md-6 divEsquerda ">
                 <label for="cadFck">Federação Catarinense</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cadFck"
-                  formControlName="federacao"
-                  [ngClass]="validacoesForm.aplicaCss(formulario.get('federacao'))"
-                />
+                <input type="text" class="form-control" id="cadFck" formControlName="federacao"
+                  [ngClass]="validacoesForm.aplicaCss(formulario.get('federacao'))" />
               </div>
 
               <div class="col-md-6 divDireita ">
                 <label for="cadCbk">Confederação Brasileira</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cadCbk"
-                  formControlName="confederacao"
-                  [ngClass]="validacoesForm.aplicaCss(formulario.get('confederacao'))"
-                />
+                <input type="text" class="form-control" id="cadCbk" formControlName="confederacao"
+                  [ngClass]="validacoesForm.aplicaCss(formulario.get('confederacao'))" />
               </div>
             </div>
 
             <!-- Spinner carregamento -->
-            <div
-              class="spinner-border text-success"
-              role="status"
-              *ngIf="spinnerCarregarCadastro"
-            >
+            <div class="spinner-border text-success" role="status" *ngIf="spinnerCarregarCadastro">
               <span class="sr-only">Loading...</span>
             </div>
 
@@ -170,11 +111,7 @@
                 Cadastrar
               </button>
 
-              <button
-                type="button"
-                class="btn btn-outline-danger"
-                (click)="cancelarCadastro()"
-              >
+              <button type="button" class="btn btn-outline-danger" (click)="cancelarCadastro()">
                 Cancelar
               </button>
             </div>
@@ -184,11 +121,7 @@
         <!-- Parte de dados do Atleta -->
         <div class="form-group col-md-6 col-sm-12 divLateralDireita">
           <!-- Spinner carregamento -->
-          <div
-            class="spinner-border text-success"
-            role="status"
-            *ngIf="spinnerCarregar"
-          >
+          <div class="spinner-border text-success" role="status" *ngIf="spinnerCarregar">
             <span class="sr-only">Loading...</span>
           </div>
           <!-- Validacao se a pesquisa foi feita. -->
@@ -218,11 +151,7 @@
                   <span class="font-weight-bold">Situação:</span> Adimplente
                 </p>
               </div>
-              <img
-                src="../../../assets/Imagens/user1.png"
-                class="imagem align-self-center mr-3 "
-                alt="Imagem Atleta"
-              />
+              <img src="../../../assets/Imagens/user1.png" class="imagem align-self-center mr-3 " alt="Imagem Atleta" />
             </div>
           </div>
         </div>

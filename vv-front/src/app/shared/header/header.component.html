@@ -1,7 +1,7 @@
 <header class="header">
   <nav class="navbar navbar-expand-lg navbar-light bg-success">
     <a class="navbar-brand text-white" [routerLink]="['/']">
-      <!-- <img src="./../../environments/header/index.jpg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+      <!--<img src="./../../environments/header/index.jpg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
 
       Karatê Vasto Verde
     </a>
@@ -12,52 +12,25 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/index']"
-            routerLinkActive="active"
-            >Home</a
-          >
+          <a class="nav-link" [routerLink]="['/index']" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/campeonatos']"
-            routerLinkActive="active"
-            >Campeonatos</a
-          >
+          <a class="nav-link" [routerLink]="['/campeonatos']" routerLinkActive="active">Campeonatos</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/treinamentos']"
-            routerLinkActive="active"
-            >Treinos</a
-          >
+          <a class="nav-link" [routerLink]="['/treinamentos']" routerLinkActive="active">Treinos</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/sobre']"
-            routerLinkActive="active"
-            >Sobre</a
-          >
+          <a class="nav-link" [routerLink]="['/sobre']" routerLinkActive="active">Sobre</a>
         </li>
 
         <!-- Logar -->
         <li *ngIf="!usuario_logado()" class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/login']"
-            routerLinkActive="active"
-            >Login</a
-          >
+          <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
         </li>
 
         <li *ngIf="usuario_logado()" class="nav-item">
-          <a class="nav-link"
-            [routerLink]="['/administrativo']"
-            routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/administrativo']" routerLinkActive="active">
             Administrativo
           </a>
 

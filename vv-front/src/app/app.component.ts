@@ -9,5 +9,4 @@ import { AuthService } from './login/auth.service';
 })
 export class AppComponent {
   title = 'Vasto Verde';
-
 }

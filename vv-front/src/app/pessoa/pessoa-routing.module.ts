@@ -16,13 +16,13 @@ const routes: Routes = [
   {
     path: 'cadastro/:id',
     component: CadastroComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     resolve: { alteracao: PessoaAlteracaoResolver }
   },
   {
     path: 'listar',
     component: ListarPessoasComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     resolve: { pessoa: ListarPessoaResolver }
   }
 ];
