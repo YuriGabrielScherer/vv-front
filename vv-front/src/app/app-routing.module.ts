@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './shared/index/index.component';
 import { LoginComponent } from './login/login/login.component';
 
-// Guards
+// Guards 
 import { AuthGuard } from './guards/auth-guard';
 import { PessoaResolver } from './guards/pessoa-resolver';
 
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'administrativo',
     loadChildren: () => import('./administrativo/administrativo.module').then(m => m.AdministrativoModule),
     canActivate: [AuthGuard],
-    resolve: { pessoa: PessoaResolver}
+    resolve: { pessoa: PessoaResolver }
   },
   {
     path: 'pessoa',
