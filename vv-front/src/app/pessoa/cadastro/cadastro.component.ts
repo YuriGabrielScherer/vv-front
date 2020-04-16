@@ -41,7 +41,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private pessoaService: PessoaService,
-    protected validacaoForm: ValidacoesFormService,
+    public validacaoForm: ValidacoesFormService,
     private toastService: ToastService,
     private modalService: ModalService,
     private router: Router,

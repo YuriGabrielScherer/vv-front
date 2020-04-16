@@ -5,7 +5,7 @@
       <!-- Card c/ informacoes pessoais -->
       <div class="card">
         <div class="card-header">
-          <strong>{{ usuarioAutenticado.nomePessoa }}</strong>
+          <strong>{{ usuarioAutenticado.nome }}</strong>
         </div>
         <div class="card-body">
           <h5 class="card-title">Mantenha seus dados sempre atualizados!</h5>
@@ -15,7 +15,7 @@
           </p>
           <a
             class="btn btn-outline-success"
-            [routerLink]="['/cadastro', usuarioAutenticado.idPessoa]">
+            [routerLink]="['/cadastro', usuarioAutenticado.id]">
             Atualizar meus dados
           </a>
         </div>
@@ -55,7 +55,7 @@
                 <li>BRASILEIRO 05/25</li>
               </ul>
             </div>
-            <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.idPessoa]">
+            <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.id]">
               <small class="text-muted">
                 Gerenciar
               </small>
@@ -73,7 +73,7 @@
                 <li>Exame de DAN 25/12</li>
               </ul>
             </div>
-            <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.idPessoa]">
+            <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.id]">
               <small class="text-muted">
                 Gerenciar
               </small>

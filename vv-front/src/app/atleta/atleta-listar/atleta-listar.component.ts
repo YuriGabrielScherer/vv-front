@@ -44,34 +44,34 @@ export class AtletaListarComponent implements OnInit {
     return this.atletas;
   }
 
-  // openModal(idAtleta: number) {
-  //   // Verificando se o usuário foi alterado após a abertura do Modal
-  //   const resposta$ = this.modal.showModal(idAtleta);
+  openModal(idAtleta: number) {
+    // Verificando se o usuário foi alterado após a abertura do Modal
+    const resposta$ = this.modal.showModal(idAtleta);
 
-  //   // Tratando a resposta
-  //   resposta$.asObservable().pipe(
-  //     take(1)
-  //   ).subscribe(
-  //     (alterado) => {
-  //       this.carregarListaAtletas();
-  //     });
-  // }
+    // Tratando a resposta
+    resposta$.asObservable().pipe(
+      take(1)
+    ).subscribe(
+      (alterado) => {
+        this.carregarListaAtletas();
+      });
+  }
 
-  // Metodos privados
-  // private carregarListaAtletas() {
-  //   this.atletaService.getAtletasPessoas().subscribe(
-  //     (success) => {
-  //       this.atletas = success;
-  //     },
-  //     (error) => {
-  //       switch (error['status']) {
-  //         default: {
-  //           this.toast.toastErroBanco();
-  //           break;
-  //         }
-  //       }
-  //     });
-  // }
+  //  Metodos privados
+  private carregarListaAtletas() {
+    this.atletaService.getAtletasPessoas().subscribe(
+      (success) => {
+        this.atletas = success;
+      },
+      (error) => {
+        switch (error['status']) {
+          default: {
+            this.toast.toastErroBanco();
+            break;
+          }
+        }
+      });
+  }
 
 
 

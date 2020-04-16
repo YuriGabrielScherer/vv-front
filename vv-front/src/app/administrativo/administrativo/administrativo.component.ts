@@ -16,6 +16,10 @@ export class AdministrativoComponent implements OnInit {
   // Usuario autenticado
   usuarioAutenticado: Pessoa = null;
 
+  isCollapsedUsuarios = false;
+  isCollapsedAtletas = false;
+  isCollapsedCampeonatos = false;
+  isCollapsedExames = false;
 
   constructor(
     private title: Title,

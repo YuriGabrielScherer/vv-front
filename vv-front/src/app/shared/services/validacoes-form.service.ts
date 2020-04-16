@@ -135,7 +135,7 @@ export class ValidacoesFormService {
   }
 
   // Retorna valor para aplicar na Class do Input
-  protected aplicaCss(campo: AbstractControl) {
+  aplicaCss(campo: AbstractControl) {
     return {
       'is-invalid': this.verificaValidTouched(campo),
       'is-valid': !this.verificaValidTouched(campo) && (campo.touched),
@@ -143,7 +143,7 @@ export class ValidacoesFormService {
   }
 
   // Verificando se o campo está invalido e se foi Focado
-  protected verificaValidTouched(campo: AbstractControl) {
+  verificaValidTouched(campo: AbstractControl) {
     if (!campo.enabled) {
       // console.log('if enabled');
       return false;

@@ -193,26 +193,26 @@
           </div>
           <!-- Validacao se a pesquisa foi feita. -->
           <div *ngIf="pessoa !== null">
-            <h5 class="divNome">{{ pessoa.nomePessoa | uppercase }}</h5>
+            <h5 class="divNome">{{ pessoa.nome | uppercase }}</h5>
             <div class="media">
               <div class="media-body divDadosPessoais ">
                 <p class="font-weight-bold">Dados pessoais</p>
                 <hr />
                 <p>
                   <span class="font-weight-bold">CPF:</span>
-                  {{ pessoa.cpfPessoa | mascaraCpf }}
+                  {{ pessoa.cpf | mascaraCpf }}
                 </p>
                 <p>
                   <span class="font-weight-bold">E-mail:</span>
-                  {{ pessoa.emailPessoa }}
+                  {{ pessoa.email }}
                 </p>
                 <p>
                   <span class="font-weight-bold">Celular:</span>
-                  {{ pessoa.telefonePessoa }}
+                  {{ pessoa.telefone }}
                 </p>
                 <p>
                   <span class="font-weight-bold">Data Nasc.:</span>
-                  {{ pessoa.dataNascimentoPessoa }}
+                  {{ pessoa.dataNascimento }}
                 </p>
                 <p>
                   <span class="font-weight-bold">Situação:</span> Adimplente
