@@ -1,8 +1,9 @@
 <div
   class="telaAdministrativa"
-  *ngIf="usuarioAutenticado !== null; else loading">
-  <div class="row divRow ">
-    <div class="divMenus  col-md-3 col-sm-12">
+  *ngIf="usuarioAutenticado !== null; else loading"
+>
+  <div class="row divRow">
+    <div class="divMenus col-md-3 col-sm-12">
       <h4>Bem-Vindo, {{ usuarioAutenticado.nome | primeiroNome }}</h4>
       <h5>Administrativo Karatê</h5>
       <hr />
@@ -11,6 +12,7 @@
         <!-- Link Inicio -->
         <div
           class="list-group-item linkInicio"
+          (click)="clickInicio()"
           [routerLink]="['/administrativo']"
         >
           Início
@@ -18,8 +20,9 @@
 
         <!-- Sub Menu Usuario -->
         <div
+          id="divUsuario"
           class="list-group-item subMenu"
-          (click)="isCollapsedUsuarios = !isCollapsedUsuarios"
+          (click)="clickMenu($event)"
           [attr.aria-expanded]="!isCollapsedUsuarios"
           aria-controls="collapseUsuarios"
         >
@@ -32,7 +35,7 @@
         >
           <a
             class="list-group-item list-group-item-action"
-            [routerLink]="['/pessoa/cadastro']"
+            [routerLink]="['/novaPessoa']"
           >
             Cadastrar
           </a>
@@ -45,8 +48,9 @@
 
         <!-- Sub Menu Atleta -->
         <div
+          id="divAtleta"
           class="list-group-item subMenu"
-          (click)="isCollapsedAtletas = !isCollapsedAtletas"
+          (click)="clickMenu($event)"
           [attr.aria-expanded]="!isCollapsedAtletas"
           aria-controls="collapseAtletas"
         >
@@ -69,16 +73,19 @@
           >
             Listar
           </a>
-          <a class="list-group-item list-group-item-action"
-          [routerLink]="['/administrativo/atleta/funcoes']">
+          <a
+            class="list-group-item list-group-item-action"
+            [routerLink]="['/administrativo/atleta/funcoes']"
+          >
             Gerenciar
           </a>
         </div>
 
         <!-- Sub Menu Campeonato-->
         <div
+          id="divCampeonato"
           class="list-group-item subMenu"
-          (click)="isCollapsedCampeonatos = !isCollapsedCampeonatos"
+          (click)="clickMenu($event)"
           [attr.aria-expanded]="!isCollapsedCampeonatos"
           aria-controls="collapseCampeonatos"
         >
@@ -102,8 +109,9 @@
 
         <!-- Sub Menu Exame-->
         <div
+          id="divExame"
           class="list-group-item subMenu"
-          (click)="isCollapsedExames = !isCollapsedExames"
+          (click)="clickMenu($event)"
           [attr.aria-expanded]="!isCollapsedExames"
           aria-controls="collapseExames"
         >

@@ -1,0 +1,188 @@
+<form class="formulario" [formGroup]="formulario" (submit)="onSubmit()">
+  <h4 class="entrar" *ngIf="!telaAlteracao">Cadastro de Usuários</h4>
+  <h4 class="entrar" *ngIf="telaAlteracao">Alteração de Usuários</h4>
+  <hr />
+
+  <div class="form-row">
+    <div class="form-group col">
+      <input
+        type="text"
+        class="form-control"
+        id="nome"
+        placeholder="Nome Completo"
+        formControlName="nome"
+        [ngClass]="validacaoForm.aplicaCss(formulario.get('nome'))"/>
+
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="
+          validacaoForm.verificaValidTouched(formulario.get('nome'))"
+          msgErro="Nome é obrigatório.">
+      </app-campo-control-erro>
+    </div>
+  </div>
+
+  <div class="form-row" *ngIf="!telaAlteracao">
+    <div class="form-group col-md-6 col-sm-12">
+      <input
+        type="password"
+        class="form-control"
+        id="senha"
+        placeholder="Senha"
+        formControlName="senha"
+        [ngClass]="validacaoForm.aplicaCss(formulario.get('senha'))"/>
+
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('senha'))"
+        msgErro="Senha é obrigatória. Mínimo 5 caracteres.">
+      </app-campo-control-erro>
+    </div>
+
+    <div class="form-group col-md-6 col-sm-12">
+      <input
+        type="text"
+        class="form-control"
+        id="login"
+        placeholder="Login"
+        formControlName="login"
+        [ngClass]="validacaoForm.aplicaCss(formulario.get('login'))"/>
+
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('login'))"
+        msgErro="Login é obrigatório.">
+      </app-campo-control-erro>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6 col-sm-12">
+      <input
+        type="text"
+        class="form-control"
+        id="cpf"
+        placeholder="CPF"
+        formControlName="cpf"
+        [textMask]="{ mask: maskCpf }"
+        [ngClass]="validacaoForm.aplicaCssCpf(formulario.get('cpf'))"
+      />
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('cpf'))"
+        msgErro="CPF inválido.">
+      </app-campo-control-erro>
+    </div>
+    <div class="form-group col">
+      <select class="custom-select" formControlName="sexo"
+      [ngClass]="validacaoForm.aplicaCss(formulario.get('sexo'))">
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6 col-sm-12">
+      <input
+        type="text"
+        class="form-control"
+        id="telefone"
+        placeholder="Celular"
+        formControlName="telefone"
+        [textMask]="{ mask: maskTelefone }"
+        [ngClass]="validacaoForm.aplicaCss(formulario.get('telefone'))"
+      />
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('telefone'))"
+        msgErro="Número de celular é obrigatório."
+      >
+      </app-campo-control-erro>
+    </div>
+    <div class="form-group col">
+      <input
+        type="text"
+        class="form-control"
+        id="data"
+        placeholder="Data de Nascimento"
+        formControlName="dataNascimento"
+        [ngClass]="validacaoForm.aplicaCss(formulario.get('dataNascimento'))"
+        [textMask]="{ mask: maskData }"
+      />
+
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('dataNascimento'))"
+        msgErro="Data de nascimento é obrigatória."
+      >
+      </app-campo-control-erro>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="E-mail"
+        formControlName="email"
+        [ngClass]="validacaoForm.aplicaCss(formulario.get('email'))"
+      />
+      <!-- Div com mensagem de erro para o usuário -->
+      <app-campo-control-erro
+        [mostraErro]="validacaoForm.verificaValidTouched(formulario.get('email'))"
+        msgErro="E-mail é obrigatório."
+      >
+      </app-campo-control-erro>
+    </div>
+  </div>
+
+  <div class="row rowBotoes">
+    <!-- Botoes de Submit -->
+    <button
+      type="submit"
+      class="btn btn-outline-success"
+      id="btnCadastro"
+      *ngIf="!telaAlteracao"
+    >
+      Cadastrar
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-outline-warning"
+      id="btnAlterar"
+      *ngIf="telaAlteracao"
+      (click)="onSubmitAlteracao()"
+    >
+      Alterar
+    </button>
+
+    <button
+      type="button"
+      (click)="onDelete()"
+      class="btn btn-outline-secondary"
+      id="btnExcluir"
+      *ngIf="telaAlteracao"
+    >
+      Excluir
+    </button>
+
+    <button
+      class="btn btn-outline-danger"
+      id="btnCancelar"
+      (click)="resetForm()"
+    >
+      Cancelar
+    </button>
+
+    <!-- Spinner Carregamento -->
+    <div *ngIf="spinner">
+      <span class="sr-only">Loading...</span>
+      <div class="spinner-border text-success" role="status"></div>
+    </div>
+
+  </div>
+</form>

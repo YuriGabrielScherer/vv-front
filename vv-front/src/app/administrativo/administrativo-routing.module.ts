@@ -13,14 +13,19 @@ const routes: Routes = [
       {
         path: '',
         component: PainelAdministrativoComponent,
-        canActivate: [AuthGuard],
-        resolve: { pessoa: PessoaResolver }
+        // canActivate: [AuthGuard],
+        // resolve: { pessoa: PessoaResolver }
       },
       {
         path: 'atleta',
         loadChildren: () => import('../atleta/atleta.module').then(m => m.AtletaModule),
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'pessoa',
+        loadChildren: () => import('../pessoa/pessoa.module').then(m => m.PessoaModule)
       }
+
     ]
   }
 

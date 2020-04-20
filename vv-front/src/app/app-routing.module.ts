@@ -1,3 +1,4 @@
+import { CadastroComponent } from './pessoa/cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -5,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './shared/index/index.component';
 import { LoginComponent } from './login/login/login.component';
 
-// Guards 
+// Guards
 import { AuthGuard } from './guards/auth-guard';
 import { PessoaResolver } from './guards/pessoa-resolver';
 
@@ -26,8 +27,7 @@ const routes: Routes = [
     //resolve: { pessoa: PessoaResolver }
   },
   {
-    path: 'pessoa',
-    loadChildren: () => import('./pessoa/pessoa.module').then(m => m.PessoaModule)
+    path: 'novaPessoa', component: CadastroComponent
   }
 
 ];

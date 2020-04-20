@@ -10,14 +10,14 @@ import { Pessoa } from './../../shared/model/pessoa';
 })
 export class PainelAdministrativoComponent implements OnInit {
 
-  usuarioAutenticado: Pessoa;
+  usuarioAutenticado: Pessoa = new Pessoa;
 
   constructor(
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getUsuarioLogado();
+    // this.getUsuarioLogado();
 
 
   }

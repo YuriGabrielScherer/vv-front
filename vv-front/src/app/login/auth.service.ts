@@ -11,8 +11,6 @@ import { map, take } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private usuarioLogado: Pessoa = null;
-
   constructor(
     private router: Router,
     private http: HttpClient,

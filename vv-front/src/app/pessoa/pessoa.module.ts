@@ -12,11 +12,13 @@ import { PessoaService } from './pessoa.service';
 
 import { ListarPessoaResolver } from './guards/listar-pessoas.resolver';
 import { PessoaAlteracaoResolver } from './guards/alterar-pessoa.resolver';
+import { CadastroFormComponent } from './cadastro/cadastro-form/cadastro-form/cadastro-form.component';
 
 @NgModule({
   declarations: [
     CadastroComponent,
-    ListarPessoasComponent
+    ListarPessoasComponent,
+    CadastroFormComponent
   ],
   imports: [
     CommonModule,

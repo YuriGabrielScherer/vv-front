@@ -108,4 +108,8 @@ export class ListarPessoasComponent implements OnInit {
   //   return this.formBuilder.array(values);
   // }
 
+  pagination(event) {
+    console.log(event);
+  }
+
 }

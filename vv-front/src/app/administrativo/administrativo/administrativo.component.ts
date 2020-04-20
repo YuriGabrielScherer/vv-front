@@ -14,7 +14,7 @@ import { Title } from '@angular/platform-browser';
 export class AdministrativoComponent implements OnInit {
 
   // Usuario autenticado
-  usuarioAutenticado: Pessoa = null;
+  usuarioAutenticado: Pessoa = new Pessoa;
 
   isCollapsedUsuarios = false;
   isCollapsedAtletas = false;
@@ -28,15 +28,46 @@ export class AdministrativoComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Administrativo Karatê');
-    this.getUsuarioLogado();
+    // this.getUsuarioLogado();
   }
 
-  // // Retornando Usuario logado
   private getUsuarioLogado() {
-    // Pegando valores do Banco de dados
     this.route.data.subscribe(
       (pessoa) => {
         this.usuarioAutenticado = pessoa.pessoa;
       });
+  }
+
+  clickMenu(event) {
+    this.fecharMenus();
+
+    switch (event.target.id) {
+      case 'divUsuario':
+        this.isCollapsedUsuarios = true;
+        break;
+      case 'divAtleta':
+        this.isCollapsedAtletas = true;
+        break;
+      case 'divCampeonato':
+        this.isCollapsedCampeonatos = true;
+        break;
+      case 'divExame':
+        this.isCollapsedExames = true;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  clickInicio() {
+    this.fecharMenus();
+  }
+
+  private fecharMenus() {
+    this.isCollapsedAtletas = false;
+    this.isCollapsedCampeonatos = false;
+    this.isCollapsedExames = false;
+    this.isCollapsedUsuarios = false;
   }
 }

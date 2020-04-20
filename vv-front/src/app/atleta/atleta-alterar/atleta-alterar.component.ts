@@ -91,7 +91,7 @@ export class AtletaAlterarComponent implements OnInit {
     resposta$.asObservable()
       .pipe(
         take(1),
-        switchMap((resposta) => resposta ? this.atletaService.remove(this.atleta.idAtleta) : EMPTY)
+        switchMap((resposta) => resposta ? this.atletaService.removeById(this.atleta.idAtleta) : EMPTY)
       ).subscribe(
         (success) => {
           // Mensagem

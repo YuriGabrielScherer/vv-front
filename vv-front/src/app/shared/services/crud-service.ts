@@ -24,12 +24,12 @@ export class CrudService<Type> {
 
   // Metodo Generico para Criacao
   private create(record: Type) {
-    return this.http.post(this.API_URL, record).pipe(take(1));
+    return this.http.post(`${this.API_URL}/cadastrar`, record).pipe(take(1));
   }
 
   // Metodo Generico para Atualizacao
-  private update(record: Type) {
-    return this.http.put(`${this.API_URL}/${record['id']}`, record).pipe(take(1));
+  public update(record: Type) {
+    return this.http.put(`${this.API_URL}/alterar`, record).pipe(take(1));
   }
 
   // Metodo Publico para salvar
@@ -43,7 +43,7 @@ export class CrudService<Type> {
   }
 
   // Metodo Generico para Exclusao
-  remove(id: number) {
+  removeById(id: number) {
     return this.http.delete(`${this.API_URL}/${id}`).pipe(take(1));
   }
 
